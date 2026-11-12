@@ -32,12 +32,12 @@ export default function Guy3D({ speaking = false, large = false, pointing = fals
     const mat = (color: number, roughness = .62, metalness = 0) => new THREE.MeshStandardMaterial({ color, roughness, metalness })
     const skin = mat(0xe7a77f), skinShade = mat(0xc98261), hair = mat(0x211b2b), suit = mat(0x17294f, .38), suitLight = mat(0x344d80, .4), shirt = mat(0xf6f4ef), tie = mat(0xe5ad4f, .35), eyeWhite = mat(0xffffff), iris = mat(0x27334d), black = mat(0x171827), shoe = mat(0x101729, .32)
     const sphere = (parent: THREE.Object3D, material: THREE.Material, pos: [number,number,number], scale: [number,number,number]) => { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 24), material); m.position.set(...pos); m.scale.set(...scale); parent.add(m); return m }
-    const box = (parent: THREE.Object3D, material: THREE.Material, pos: [number,number,number], scale: [number,number,number], bevel = .08) => { const g = new THREE.BoxGeometry(...scale); const m = new THREE.Mesh(g, material); m.position.set(...pos); parent.add(m); return m }
+    const box = (parent: THREE.Object3D, material: THREE.Material, pos: [number,number,number], scale: [number,number,number]) => { const g = new THREE.BoxGeometry(...scale); const m = new THREE.Mesh(g, material); m.position.set(...pos); parent.add(m); return m }
 
     // Oversized friendly animated-film head and sculpted hairstyle.
     sphere(guy, suit, [0,-.05,0], [.63,.72,.37])
     sphere(guy, shirt, [0,.05,.34], [.25,.48,.09])
-    const torso = sphere(guy, suit, [0,-.48,0], [.83,.92,.48])
+    sphere(guy, suit, [0,-.48,0], [.83,.92,.48])
     sphere(guy, suitLight, [-.55,-.25,.04], [.2,.53,.43]); sphere(guy, suitLight, [.55,-.25,.04], [.2,.53,.43])
     sphere(guy, tie, [0,-.27,.445], [.105,.37,.075])
     sphere(guy, tie, [0,.04,.45], [.13,.12,.08])
@@ -78,7 +78,6 @@ export default function Guy3D({ speaking = false, large = false, pointing = fals
     guy.scale.setScalar(large ? 1.13 : .75)
     guy.position.y = large ? -.05 : -.12
 
-    let frame = 0
     let raf = 0
     const clock = new THREE.Clock()
     const resize = new ResizeObserver(() => { if (!host.clientWidth || !host.clientHeight) return; camera.aspect=host.clientWidth/host.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(host.clientWidth,host.clientHeight) })
