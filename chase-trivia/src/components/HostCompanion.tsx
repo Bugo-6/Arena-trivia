@@ -22,7 +22,7 @@ export default function HostCompanion({ kind, answered, spectator, questionText,
   }, [])
 
   useEffect(() => {
-    if (!questionVisible || spectator) return
+    if (!questionVisible || spectator || !('speechSynthesis' in window)) return
     // Each player hears the host locally; no audio is sent through the game server.
     const intro = new SpeechSynthesisUtterance('בואו נראה את השאלה')
     intro.lang = 'he-IL'
