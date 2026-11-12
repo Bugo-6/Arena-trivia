@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 type HostCompanionProps = {
-  kind: 'build' | 'chase' | 'question'
+  kind: 'build' | 'chase' | 'ffa' | 'team'
   answered: boolean
   spectator: boolean
 }
