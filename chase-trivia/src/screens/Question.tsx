@@ -27,7 +27,7 @@ export default function Question({ s }: { s: Session }) {
   const [picked, setPicked] = useState<number | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   const [started, setStarted] = useState(() => msUntil(q.started_at) <= 0)
-  const [questionVisible, setQuestionVisible] = useState(() => msUntil(q.started_at) <= 0)
+  const [questionVisible, setQuestionVisible] = useState(false)
   const key = `${room.id}:${q.idx}:${q.kind}`
   const locked = useRef(false)
 
@@ -39,7 +39,7 @@ export default function Question({ s }: { s: Session }) {
     locked.current = false
     const ms = msUntil(q.started_at)
     setStarted(ms <= 0)
-    setQuestionVisible(ms <= 0)
+    setQuestionVisible(false)
     if (ms > 0) {
       const t = window.setTimeout(() => setStarted(true), ms)
       return () => window.clearTimeout(t)
