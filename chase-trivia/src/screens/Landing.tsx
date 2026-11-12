@@ -5,6 +5,7 @@ import { Avatar } from '../components/ui'
 import { backendKind } from '../lib/backend'
 import { MODES } from '../lib/meta'
 import { sound } from '../lib/sound'
+import StageScene from '../components/StageScene'
 
 const demo = [
   { a: 0, from: '18%', to: '62%' },
@@ -37,6 +38,9 @@ export default function Landing() {
             <Link to="/create" className="btn primary big" onClick={() => sound.unlock()}>
               🎮 פתחו חדר
             </Link>
+            <Link to="/inspect" className="btn ghost big" onClick={() => sound.unlock()}>
+              🧭 בדיקת המפה
+            </Link>
             <Link to="/join" className="btn ghost big" onClick={() => sound.unlock()}>
               🔑 הצטרפו עם קוד
             </Link>
@@ -46,6 +50,8 @@ export default function Landing() {
               השרת עדיין לא מחובר. <Link to="/setup">הוראות חיבור ל-Supabase</Link>
             </div>
           )}
+
+          <StageScene />
 
           <motion.div
             className="glass hero-board"
