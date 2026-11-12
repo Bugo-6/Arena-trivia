@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Guy3D from './Guy3D'
 
 type StageSceneProps = {
   mode?: 'opening' | 'winner'
@@ -44,13 +45,9 @@ export default function StageScene({
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: [0, -7, 0], opacity: 1 }}
         transition={{ opacity: { duration: 0.7, delay: 0.25 }, y: { duration: 3.2, repeat: Infinity, ease: 'easeInOut' } }}
-        aria-label="המקום של גיא, מנחה המשחק"
+        aria-label="גיא, מנחה המשחק"
       >
-        <div className="host-aura" />
-        <div className="host-head"><span className="host-hair" /><span className="host-eye eye-left" /><span className="host-eye eye-right" /><span className="host-smile" /></div>
-        <div className="host-neck" />
-        <div className="host-body"><span className="host-shirt" /><span className="host-tie" /><span className="host-lapel lapel-left" /><span className="host-lapel lapel-right" /></div>
-        <div className="host-mic"><i /></div>
+        <Guy3D large />
         <span className="host-name">גיא · המנחה</span>
       </motion.div>
 
