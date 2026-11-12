@@ -7,6 +7,7 @@ import { TEAM_NAMES, modeName } from '../lib/meta'
 import { sound } from '../lib/sound'
 import type { RankRow } from '../lib/types'
 import type { Session } from '../lib/useRoomSession'
+import StageScene from '../components/StageScene'
 
 function bigConfetti() {
   const end = Date.now() + 3200
@@ -81,6 +82,8 @@ export default function Winner({ s }: { s: Session }) {
 
   return (
     <main className="page narrow stack">
+      <StageScene mode="winner" title="THE CHAMPION" subtitle={headline.t} />
+
       <div className="winner-hero">
         <motion.div className="crown-big" initial={{ scale: 0, rotate: -30 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 12 }}>
           {iWon ? '🏆' : '🎖️'}
