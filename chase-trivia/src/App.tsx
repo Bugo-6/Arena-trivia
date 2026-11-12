@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Landing from './screens/Landing'
+import InspectMode from './screens/InspectMode'
 import { CreatePage, JoinPage } from './screens/Entry'
 import RoomPage from './screens/Room'
 import History from './screens/History'
@@ -25,6 +26,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/inspect" element={<InspectMode />} />
       <Route path="/create" element={<CreatePage />} />
       <Route path="/join" element={<JoinPage />} />
       <Route path="/join/:code" element={<JoinPage />} />
