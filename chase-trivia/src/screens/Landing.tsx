@@ -38,8 +38,8 @@ export default function Landing() {
             <Link to="/create" className="btn primary big" onClick={() => sound.unlock()}>
               🎮 פתחו חדר
             </Link>
-            <Link to="/create?solo=1" className="btn ghost big" onClick={() => sound.unlock()}>
-              🧠 שחקו לבד · Solo Mode
+            <Link to="/inspect" className="btn ghost big" onClick={() => sound.unlock()}>
+              🧭 בדיקת המפה
             </Link>
             <Link to="/join" className="btn ghost big" onClick={() => sound.unlock()}>
               🔑 הצטרפו עם קוד
