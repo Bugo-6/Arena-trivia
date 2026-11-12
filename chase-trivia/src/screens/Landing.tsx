@@ -5,6 +5,7 @@ import { Avatar } from '../components/ui'
 import { backendKind } from '../lib/backend'
 import { MODES } from '../lib/meta'
 import { sound } from '../lib/sound'
+import StageScene from '../components/StageScene'
 
 const demo = [
   { a: 0, from: '18%', to: '62%' },
@@ -46,6 +47,8 @@ export default function Landing() {
               השרת עדיין לא מחובר. <Link to="/setup">הוראות חיבור ל-Supabase</Link>
             </div>
           )}
+
+          <StageScene />
 
           <motion.div
             className="glass hero-board"
