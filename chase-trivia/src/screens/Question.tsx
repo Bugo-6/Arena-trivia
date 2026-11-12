@@ -27,6 +27,7 @@ export default function Question({ s }: { s: Session }) {
   const [picked, setPicked] = useState<number | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   const [started, setStarted] = useState(() => msUntil(q.started_at) <= 0)
+  const [questionVisible, setQuestionVisible] = useState(() => msUntil(q.started_at) <= 0)
   const key = `${room.id}:${q.idx}:${q.kind}`
   const locked = useRef(false)
 
@@ -38,6 +39,7 @@ export default function Question({ s }: { s: Session }) {
     locked.current = false
     const ms = msUntil(q.started_at)
     setStarted(ms <= 0)
+    setQuestionVisible(ms <= 0)
     if (ms > 0) {
       const t = window.setTimeout(() => setStarted(true), ms)
       return () => window.clearTimeout(t)
@@ -47,8 +49,12 @@ export default function Question({ s }: { s: Session }) {
   }, [key])
 
   useEffect(() => {
-    if (started) sound.whoosh()
-  }, [started])
+    if (!started) return
+    setQuestionVisible(false)
+    const revealTimer = window.setTimeout(() => setQuestionVisible(true), 900)
+    sound.whoosh()
+    return () => window.clearTimeout(revealTimer)
+  }, [started, key])
 
   const choose = useCallback(
     async (i: number) => {
@@ -110,7 +116,7 @@ export default function Question({ s }: { s: Session }) {
         <Countdown deadline={q.deadline} limit={q.limit} beeps={!spectator && started} />
       </div>
 
-      <HostCompanion kind={q.kind} answered={lockedIn} spectator={spectator} />
+      <HostCompanion kind={q.kind} answered={lockedIn} spectator={spectator} questionText={q.text} questionKey={key} questionVisible={questionVisible} />
 
       <motion.section
         key={key}
@@ -122,7 +128,12 @@ export default function Question({ s }: { s: Session }) {
       >
         {q.kind === 'build' && <div className="eyebrow" style={{ marginBottom: 10 }}>כל תשובה נכונה = צעד קדימה על הלוח</div>}
         {q.kind === 'chase' && <div className="eyebrow" style={{ marginBottom: 10, color: 'var(--pink)' }}>🥷 הרודף עונה יחד איתכם</div>}
-        <h2 className="q-text">{started ? q.text : '...'}</h2>
+        <motion.h2
+          className="q-text"
+          initial={false}
+          animate={questionVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 12, scale: .97 }}
+          transition={{ duration: .5, type: 'spring', stiffness: 190, damping: 20 }}
+        >{questionVisible ? q.text : started ? 'גיא מציג את השאלה…' : '...'}</motion.h2>
       </motion.section>
 
       {spectator && (
