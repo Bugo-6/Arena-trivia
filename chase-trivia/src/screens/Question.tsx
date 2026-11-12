@@ -5,6 +5,7 @@ import { Avatar, Toast } from '../components/ui'
 import { msUntil } from '../lib/clock'
 import { TEAM_NAMES, catIcon, catLabel, diffLabel, errText } from '../lib/meta'
 import { sound } from '../lib/sound'
+import HostCompanion from '../components/HostCompanion'
 import type { Session } from '../lib/useRoomSession'
 
 const LETTERS = ['א', 'ב', 'ג', 'ד']
@@ -108,6 +109,8 @@ export default function Question({ s }: { s: Session }) {
         </div>
         <Countdown deadline={q.deadline} limit={q.limit} beeps={!spectator && started} />
       </div>
+
+      <HostCompanion kind={q.kind} answered={lockedIn} spectator={spectator} />
 
       <motion.section
         key={key}
