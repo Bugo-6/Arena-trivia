@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Avatar, Toast } from '../components/ui'
 import { CATEGORIES, DIFFICULTIES, MODES, TEAM_NAMES, errText } from '../lib/meta'
@@ -13,8 +13,6 @@ const TIMES = [10, 15, 20, 30]
 
 export default function Lobby({ s }: { s: Session }) {
   const nav = useNavigate()
-  const [searchParams] = useSearchParams()
-  const solo = searchParams.get('solo') === '1'
   const room = s.room!
   const me = s.me!
   const [draft, setDraft] = useState<{ mode: Mode; settings: Settings } | null>(null)
@@ -78,7 +76,7 @@ export default function Lobby({ s }: { s: Session }) {
   }
 
   const slots = Array.from({ length: 8 }, (_, i) => s.players[i] ?? null)
-  const canStart = s.players.length >= (solo ? 1 : 2) && (!solo || mode === 'ffa')
+  const canStart = s.players.length >= 2
   const teamPlayers = (t: number) => s.players.filter((p) => p.team === t)
   const unassigned = s.players.filter((p) => p.team === null)
 
@@ -191,9 +189,6 @@ export default function Lobby({ s }: { s: Session }) {
               <div className="title-md">מצב משחק</div>
               {!host && <span className="pill">המארח בוחר</span>}
             </div>
-            {solo ? (
-              <div className="alert info" role="status">🧠 מצב אימון אישי פעיל — משחק טריוויה רגיל, רק אתם מול השאלות. מצב המרדף וקבוצות זמינים במשחק מרובה משתתפים.</div>
-            ) : (
             <div className="mode-grid" role="group" aria-label="מצב משחק">
               {MODES.map((m) => (
                 <button
@@ -213,7 +208,6 @@ export default function Lobby({ s }: { s: Session }) {
                 </button>
               ))}
             </div>
-            )}
           </div>
 
           <div className="glass pad stack">
@@ -285,7 +279,7 @@ export default function Lobby({ s }: { s: Session }) {
           )}
           {host ? (
             <button className="btn hot big block" disabled={!canStart || s.busy} onClick={start}>
-              {canStart ? (solo ? '🧠 התחילו אימון אישי' : '🚀 התחילו משחק') : solo ? 'האימון האישי זמין במצב FFA בלבד' : 'צריך לפחות 2 שחקנים'}
+              {canStart ? '🚀 התחילו משחק' : 'צריך לפחות 2 שחקנים'}
             </button>
           ) : (
             <div className="glass pad-sm center row" style={{ justifyContent: 'center' }}>
