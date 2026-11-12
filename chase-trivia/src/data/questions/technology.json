@@ -1,0 +1,332 @@
+[
+ {
+  "q": "מי ייסד את מיקרוסופט יחד עם פול אלן?",
+  "a": [
+   "ביל גייטס",
+   "סטיב ג'ובס",
+   "מארק צוקרברג",
+   "לארי פייג'"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "איזו חברה מפתחת את ה-iPhone?",
+  "a": [
+   "אפל",
+   "סמסונג",
+   "נוקיה",
+   "גוגל"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "מה פירוש הקיצור WWW?",
+  "a": [
+   "World Wide Web",
+   "World Wide Network",
+   "Web Wide World",
+   "Wide Web Window"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "באיזו שפה משתמשים בעיקר לעיצוב ולסגנון של דפי אינטרנט?",
+  "a": [
+   "CSS",
+   "SQL",
+   "C++",
+   "Python"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "איזו חברה יצרה את קונסולת הפלייסטיישן?",
+  "a": [
+   "סוני",
+   "מיקרוסופט",
+   "נינטנדו",
+   "סגה"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "מה פירוש הקיצור USB?",
+  "a": [
+   "Universal Serial Bus",
+   "Universal System Board",
+   "United Serial Bus",
+   "Universal Storage Backup"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "איזו חברה מפתחת את מערכת ההפעלה אנדרואיד?",
+  "a": [
+   "גוגל",
+   "אפל",
+   "מיקרוסופט",
+   "סמסונג"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "מה פירוש הקיצור CPU?",
+  "a": [
+   "Central Processing Unit",
+   "Computer Personal Unit",
+   "Central Program Utility",
+   "Core Power Unit"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "איזה סימן מופיע בכתובת אימייל בין שם המשתמש לדומיין?",
+  "a": [
+   "@",
+   "#",
+   "&",
+   "%"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "איזה דפדפן אינטרנט פיתחה גוגל?",
+  "a": [
+   "Chrome",
+   "Safari",
+   "Firefox",
+   "Edge"
+  ],
+  "cat": "technology",
+  "diff": "easy"
+ },
+ {
+  "q": "באיזו שנה הוצג ה-iPhone הראשון?",
+  "a": [
+   "2007",
+   "2005",
+   "2009",
+   "2010"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "מי יצר את גרעין מערכת ההפעלה לינוקס?",
+  "a": [
+   "לינוס טורוולדס",
+   "ריצ'רד סטולמן",
+   "דניס ריצ'י",
+   "ג'יימס גוסלינג"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "מה פירוש הקיצור HTTP?",
+  "a": [
+   "HyperText Transfer Protocol",
+   "High Transfer Text Protocol",
+   "HyperText Transmission Process",
+   "Hyper Terminal Transfer Protocol"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "איזו שפת תכנות יצר ברנדן אייק בשנת 1995 עבור הדפדפן נטסקייפ?",
+  "a": [
+   "JavaScript",
+   "Java",
+   "PHP",
+   "Ruby"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "כמה ביטים יש בבייט אחד?",
+  "a": [
+   "8",
+   "4",
+   "16",
+   "10"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "מי תכנן את ה\"מכונה האנליטית\", שנחשבת לאב-טיפוס של המחשב המודרני?",
+  "a": [
+   "צ'ארלס בבאג'",
+   "אלן טיורינג",
+   "ג'ון פון נוימן",
+   "בלייז פסקל"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "איזו חברה יצרה את קונסולת ה-Xbox?",
+  "a": [
+   "מיקרוסופט",
+   "סוני",
+   "נינטנדו",
+   "סגה"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "איזו שפת תכנות קשורה לשמו של דניס ריצ'י?",
+  "a": [
+   "C",
+   "Pascal",
+   "Basic",
+   "Fortran"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "איזה שירות ברשת מתרגם שמות אתרים לכתובות IP?",
+  "a": [
+   "DNS",
+   "DHCP",
+   "FTP",
+   "SMTP"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "באיזו שנה נוסדה גוגל?",
+  "a": [
+   "1998",
+   "1994",
+   "2001",
+   "2004"
+  ],
+  "cat": "technology",
+  "diff": "medium"
+ },
+ {
+  "q": "מי יצר את שפת התכנות Python?",
+  "a": [
+   "גיידו ואן רוסום",
+   "בייארן שטרוסטרופ",
+   "ג'יימס גוסלינג",
+   "ראסמוס לרדורף"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "מהו המיקרו-מעבד המסחרי הראשון של אינטל, משנת 1971?",
+  "a": [
+   "Intel 4004",
+   "Intel 8086",
+   "Intel 8080",
+   "Intel 4040"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "מי המציא את ה-World Wide Web?",
+  "a": [
+   "טים ברנרס-לי",
+   "וינט סרף",
+   "מארק אנדריסן",
+   "בוב קאהן"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "מה היה שם הרשת שקדמה לאינטרנט ומומנה על ידי משרד ההגנה האמריקאי?",
+  "a": [
+   "ARPANET",
+   "USENET",
+   "BITNET",
+   "NSFNET"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "איזה מחשב ניצח את אלוף העולם בשחמט גארי קספרוב במשחק ב-1997?",
+  "a": [
+   "Deep Blue",
+   "Watson",
+   "AlphaGo",
+   "Deep Thought"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "איזו חברה פיתחה במקור את שפת Java?",
+  "a": [
+   "Sun Microsystems",
+   "IBM",
+   "Netscape",
+   "Borland"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "מי פיתח את מערכת ההפעלה Unix יחד עם דניס ריצ'י?",
+  "a": [
+   "קן תומפסון",
+   "לינוס טורוולדס",
+   "ביל ג'וי",
+   "ריצ'רד סטולמן"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "באיזו שנה הושק מחשב הבית Commodore 64?",
+  "a": [
+   "1982",
+   "1980",
+   "1984",
+   "1978"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "שפת התכנות Ada נקראת על שם מי?",
+  "a": [
+   "אדה לבלייס",
+   "אדה יונת",
+   "אדה גרהאם",
+   "אדה סמית'"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ },
+ {
+  "q": "מהו מספר הפורט הסטנדרטי של HTTPS?",
+  "a": [
+   "443",
+   "80",
+   "21",
+   "8080"
+  ],
+  "cat": "technology",
+  "diff": "hard"
+ }
+]

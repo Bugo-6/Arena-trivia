@@ -1,0 +1,41 @@
+{
+  "name": "chase-trivia",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "dev:local": "concurrently -k -n server,web -c magenta,cyan \"node scripts/local-server.mjs\" \"cross-env-shell VITE_LOCAL_SERVER=http://localhost:8787 vite --host\"",
+    "seed:build": "node scripts/build-seed.cjs",
+    "test:server": "node scripts/build-seed.cjs && node scripts/test-server.mjs",
+    "typecheck": "tsc -b",
+    "test:e2e": "node scripts/e2e.mjs ffa && node scripts/e2e.mjs team && node scripts/e2e.mjs chase && node scripts/e2e-reconnect.mjs",
+    "dev:test": "concurrently -k -n server,web \"cross-env LOCAL_SERVER_DEBUG=1 node scripts/local-server.mjs\" \"cross-env-shell VITE_LOCAL_SERVER=http://localhost:8787 vite --port 5173\""
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^14.12.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5",
+    "zustand": "^5.1.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.7",
+    "cross-env": "^10.1.0",
+    "oxlint": "^1.90.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
+  }
+}
