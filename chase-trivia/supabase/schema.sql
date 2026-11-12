@@ -583,8 +583,7 @@ begin
   if v_room.host_player_id <> v_me.id then raise exception 'not_host'; end if;
   if v_room.status <> 'lobby' then raise exception 'invalid_state'; end if;
   select count(*) into v_count from public.players where room_id = p_room;
-  -- Solo practice is supported only in FFA; chase and team still require at least two players.
-  if v_count < 2 and not (v_count = 1 and v_room.mode = 'ffa') then raise exception 'need_players'; end if;
+  if v_count < 2 then raise exception 'need_players'; end if;
 
   update public.players set score = 0, correct_count = 0, bank = 0, position = 0, chase_status = 'alive',
          final_correct = 0, final_wrong = 0, final_n = 0, final_q = null, final_locked_until = null where room_id = p_room;
