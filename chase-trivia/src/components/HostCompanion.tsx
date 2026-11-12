@@ -1,5 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+import Guy3D from './Guy3D'
 
 type HostCompanionProps = {
   kind: 'build' | 'chase' | 'ffa' | 'team'
@@ -11,10 +13,14 @@ type HostCompanionProps = {
 }
 
 export default function HostCompanion({ kind, answered, spectator, questionText, questionKey, questionVisible }: HostCompanionProps) {
+  const [speaking, setSpeaking] = useState(false)
   const speak = useCallback((text: string) => {
     if (!('speechSynthesis' in window)) return
     window.speechSynthesis.cancel()
     const utterance = new SpeechSynthesisUtterance(text)
+    utterance.onstart = () => setSpeaking(true)
+    utterance.onend = () => setSpeaking(false)
+    utterance.onerror = () => setSpeaking(false)
     utterance.lang = 'he-IL'
     utterance.rate = 0.92
     utterance.pitch = 1.08
@@ -26,6 +32,8 @@ export default function HostCompanion({ kind, answered, spectator, questionText,
     // Each player hears the host locally; no audio is sent through the game server.
     const intro = new SpeechSynthesisUtterance('בואו נראה את השאלה')
     intro.lang = 'he-IL'
+    intro.onstart = () => setSpeaking(true)
+    intro.onerror = () => setSpeaking(false)
     intro.rate = 0.94
     intro.pitch = 1.08
     const question = new SpeechSynthesisUtterance(questionText)
@@ -33,7 +41,10 @@ export default function HostCompanion({ kind, answered, spectator, questionText,
     question.rate = 0.9
     question.pitch = 1.08
     window.speechSynthesis?.cancel()
-    intro.onend = () => window.speechSynthesis?.speak(question)
+    intro.onend = () => { setSpeaking(false); window.speechSynthesis?.speak(question) }
+    question.onstart = () => setSpeaking(true)
+    question.onend = () => setSpeaking(false)
+    question.onerror = () => setSpeaking(false)
     window.speechSynthesis?.speak(intro)
     return () => {
       intro.onend = null
@@ -54,18 +65,7 @@ export default function HostCompanion({ kind, answered, spectator, questionText,
 
   return (
     <motion.aside className="guy-companion" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .45 }} aria-label="גיא, מנחה המשחק">
-      <div className="guy-mini">
-        <div className="guy-mini-glow" />
-        <motion.div className="guy-mini-head" animate={{ y: [0, -2, 0], rotate: [0, 1, 0] }} transition={{ duration: 2.8, repeat: Infinity }}>
-          <i className="guy-mini-hair" />
-          <i className="guy-mini-eye left" /><i className="guy-mini-eye right" />
-          <i className="guy-mini-cheek left" /><i className="guy-mini-cheek right" />
-          <i className="guy-mini-mouth" />
-        </motion.div>
-        <div className="guy-mini-neck" />
-        <div className="guy-mini-suit"><i className="guy-mini-shirt" /><i className="guy-mini-tie" /><i className="guy-mini-lapel left" /><i className="guy-mini-lapel right" /></div>
-        <motion.div className="guy-mini-mic" animate={{ rotate: [-8, -15, -8] }} transition={{ duration: 1.8, repeat: Infinity }} />
-      </div>
+      <div className="guy-mini"><Guy3D speaking={speaking} pointing={questionVisible && !answered} /></div>
       <div className="guy-dialog">
         <div className="guy-dialog-name"><span>✦</span> גיא אומר</div>
         <motion.p key={line} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}>{line}</motion.p>
@@ -73,7 +73,7 @@ export default function HostCompanion({ kind, answered, spectator, questionText,
       </div>
       <style>{`
         .guy-companion{direction:rtl;display:flex;align-items:center;justify-content:center;gap:14px;margin:12px auto 18px;max-width:520px;min-height:92px;padding:10px 16px;border:1px solid rgba(137,151,255,.2);border-radius:20px;background:linear-gradient(110deg,rgba(31,42,91,.62),rgba(72,37,119,.35));box-shadow:inset 0 1px rgba(255,255,255,.07),0 12px 32px rgba(8,12,35,.16);overflow:hidden}
-        .guy-mini{position:relative;flex:0 0 68px;height:76px;filter:drop-shadow(0 4px 10px rgba(93,115,255,.35))}
+        .guy-mini{position:relative;flex:0 0 88px;width:88px;height:112px;filter:drop-shadow(0 4px 10px rgba(93,115,255,.35))}.guy3d{width:100%;height:100%;min-width:0;min-height:0}.guy3d canvas{display:block;width:100%;height:100%}.guy3d-large{width:100%;height:100%}
         .guy-mini-glow{position:absolute;inset:10px -8px 0;border-radius:50%;background:radial-gradient(ellipse,rgba(100,119,255,.4),transparent 70%)}
         .guy-mini-head{position:absolute;z-index:2;top:1px;left:17px;width:36px;height:39px;border-radius:44% 44% 47% 47%;background:linear-gradient(135deg,#ffe0bf,#c98261);box-shadow:inset -4px -3px rgba(120,55,40,.12)}
         .guy-mini-hair{position:absolute;top:-3px;left:-1px;width:38px;height:16px;border-radius:50% 50% 25% 25%;background:linear-gradient(135deg,#34283a,#10162c)}
