@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Shell } from '../components/Shell'
 import { AvatarPicker } from '../components/ui'
 import { SetupNotice } from './Setup'
@@ -65,8 +65,6 @@ export function ProfileForm({
 
 export function CreatePage() {
   const nav = useNavigate()
-  const [searchParams] = useSearchParams()
-  const solo = searchParams.get('solo') === '1'
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -79,7 +77,7 @@ export function CreatePage() {
       await syncClock()
       const res = await be.rpc<{ code: string }>('create_room', { p_name: name, p_avatar: avatar })
       saveProfile(name, avatar)
-      nav(`/room/${res.code}${solo ? '?solo=1' : ''}`)
+      nav(`/room/${res.code}`)
     } catch (e) {
       setError(errText(e))
       setBusy(false)
@@ -91,14 +89,14 @@ export function CreatePage() {
       <main className="page narrow stack">
         <div>
           <div className="eyebrow">שלב 1</div>
-          <h1 className="title-lg">{solo ? 'מתחילים אימון אישי' : 'פותחים חדר חדש'}</h1>
-          <p className="muted">{solo ? 'משחקים לבד בקצב שלכם, צוברים נקודות ומשפרים את התוצאה.' : 'אתם המארחים: אתם בוחרים מצב משחק ומתחילים כשכולם בפנים.'}</p>
+          <h1 className="title-lg">פותחים חדר חדש</h1>
+          <p className="muted">אתם המארחים: אתם בוחרים מצב משחק ומתחילים כשכולם בפנים.</p>
         </div>
         {backendKind === 'none' ? (
           <SetupNotice />
         ) : (
           <div className="glass pad">
-            <ProfileForm onSubmit={create} submitLabel={solo ? '🧠 התחילו משחק לבד' : '🚀 צרו חדר'} busy={busy} error={error} />
+            <ProfileForm onSubmit={create} submitLabel="🚀 צרו חדר" busy={busy} error={error} />
           </div>
         )}
       </main>
